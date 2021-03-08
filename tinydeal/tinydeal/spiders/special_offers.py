@@ -17,5 +17,6 @@ class SpecialOffersSpider(scrapy.Spider):
                 'original_price':product.xpath('.//span[@class="normalprice fl"]/text()').get()
             }
         next_page = response.xpath("//a[@class='nextPage']/@href").get()
-        yield response.follow(url=next_page)
+        if next_page:
+            yield response.follow(url=next_page)
 
